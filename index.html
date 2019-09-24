@@ -9,13 +9,22 @@
     <!-- <script src="main.js"></script> -->
 </head>
 <body>
-    <div><h1>Hello World</h1></div>
     <div id="app"></div>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script>
-        const Header = React.createElement('h1', null, 'Hello World From React');
-        ReactDOM.render(Header, document.getElementById('app'));
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <script type="text/babel">
+        const Header = <h1>Hello from reactjs</h1>;
+        //var Header = React.createElement("h1", null, "Hello from reactjs");
+
+        const Clock = function  () {
+            //do whatever we want
+            const date = new Date();
+            const thisYear = date.getFullYear();
+            return <h1 style={{color: 'red',fontSize:'50px',border:'1px solid #000'}}>THIS YEAR IS: {thisYear}</h1>;
+        }
+
+        ReactDOM.render(<Clock />, document.getElementById('app'));
     </script>
 </body>
 </html>
