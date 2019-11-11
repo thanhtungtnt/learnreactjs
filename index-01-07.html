@@ -17,6 +17,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
     <script type="text/babel">
         const Header = <h1>Hello from reactjs</h1>;
+        const HeaderDisplay = function(){
+            return <h1>THIS IS THE APP HEADER</h1>;
+        }
         //var Header = React.createElement("h1", null, "Hello from reactjs");
 
         const Clock = function  (props) {
@@ -25,10 +28,17 @@
             const thisYear = date.getFullYear();
             return <h1 style={{color: props.color}}>THIS YEAR IS: {thisYear}</h1>;
         }
+        
+        const App = function (props) {
+            return <div>
+                <HeaderDisplay />
+                <Clock color="#00ff00" />
+                <Clock color="#ff0000" />
+                <Clock color="#0000ff" />
+            </div>;
+        }
 
-        ReactDOM.render(<Clock color="#00ff00" />, document.getElementById('app'));
-        ReactDOM.render(<Clock color="#ff0000" />, document.getElementById('app2'));
-        ReactDOM.render(<Clock color="#0000ff" />, document.getElementById('app3'));
+        ReactDOM.render(<App />, document.getElementById('app'));
     </script>
 </body>
 </html>
