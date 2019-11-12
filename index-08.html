@@ -16,19 +16,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
     <script type="text/babel">
         class Counter extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    count: 0
+                };
+
+                //this.handlePlus = this.handlePlus.bind(this);
+                //this.handleSubstract = this.hanndleSubstract.bind(this);
+            }
+
             handleSubstract(){
-                console.log('substracted');
+                this.setState({
+                    count: this.state.count - 1
+                });
             }
 
             handlePlus(){
-                console.log('plus');
+                this.setState({
+                    count: this.state.count + 1
+                });
             }
 
             render() {
                 return (
                     <div>
                         <button onClick={this.handleSubstract}>-</button>
-                        <span style={{padding: '10px'}}>9</span>
+                        <span style={{padding: '10px'}}>
+                            {this.state.count}    
+                        </span>
                         <button onClick={this.handlePlus}>+</button>
                     </div>
                 )
