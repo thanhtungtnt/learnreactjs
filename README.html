@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Setup Webpack</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body class="vscode-light">
+        <h1 id="setup-webpack">Setup Webpack</h1>
+<h3 id="some-basic-npm-commands">Some basic npm commands:</h3>
+<pre><code><div>1. npm init -y : reset npm
+2. npm i --save-dev webpack webpack-cli : install Webpack
+3. npm i --save-dev babel-core babel-preset-env babel-preset-react babel-loader - install babel-core, babel-preset-env, babel-preset-react, and babel-loader
+4. npm i --save-dev webpack-dev-server - install webpack-dev-server
+5. npm i --save-dev html-webpack-plugin - install html-webpack-plugin
+6. npm i --save-dev react react-dom - install react and react dom
+</div></code></pre>
+<p>**You need to add into <em>scripts</em> in <em>package.json</em> to use something
+Ex: for using webpack and webpack-dev-server, I added 2 these code lines below:</p>
+<pre><code><div>&quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;webpacktnt&quot;: &quot;webpack&quot;,
+    &quot;webpackstart&quot;: &quot;webpack-dev-server&quot;
+  },
+</div></code></pre>
+<h3 id="webpack">WEBPACK</h3>
+<p><strong>Every options contains in module.exports</strong></p>
+<pre><code><div>module.exports = {}
+</div></code></pre>
+<p><strong>There are many options:</strong></p>
+<ol>
+<li>The input file</li>
+</ol>
+<pre><code><div>entry: path.join(__dirname, 'src', 'app.js'),
+</div></code></pre>
+<ol start="2">
+<li>the output file - in output properties, there are 2 properties (path, filename)</li>
+</ol>
+<pre><code><div>output: {
+   path: path.join(__dirname, 'dist'),
+   filename: 'app.bundle.js'
+}
+</div></code></pre>
+<ol start="3">
+<li>You need to set the mode option to 'development' or 'production' so that webpack know if it need to compile into a dev version (uncompressed) or production version (compressed)</li>
+</ol>
+<pre><code><div>mode: process.env.NODE_ENV || 'development'
+</div></code></pre>
+<ol start="4">
+<li>Teach webpack how to compile babel</li>
+</ol>
+<pre><code><div>module: {
+    rules: [{
+        test: /\.(js|jsx)$/, - a regular expression to make sure the file input is correct type
+        exclude: /node_modules/, - ignore node_modules folder
+        use: ['babel-loader'] - use babel-loader
+    }]
+}
+</div></code></pre>
+<ol start="5">
+<li>Config webpack-dev-server</li>
+</ol>
+<pre><code><div>devServer: {
+        contentBase: path.join(__dirname,'src'),
+    },
+</div></code></pre>
+<ol start="6">
+<li>Config html-webpack-plugin</li>
+</ol>
+<pre><code><div>plugins: [
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname,'src','index.html')        
+        })
+    ]
+</div></code></pre>
+
+    </body>
+    </html>
