@@ -4,10 +4,10 @@
 ```
 1. npm init -y : reset npm
 2. npm i --save-dev webpack webpack-cli : install Webpack
-3. npm i --save-dev babel-core babel-preset-env babel-preset-react babel-loader
-4. npm i --save-dev webpack-dev-server
-5. npm i --save-dev html-webpack-plugin
-6. npm i --save-dev react react-dom
+3. npm i --save-dev babel-core babel-preset-env babel-preset-react babel-loader - install babel-core, babel-preset-env, babel-preset-react, and babel-loader
+4. npm i --save-dev webpack-dev-server - install webpack-dev-server
+5. npm i --save-dev html-webpack-plugin - install html-webpack-plugin
+6. npm i --save-dev react react-dom - install react and react dom
 ```
 
 **You need to add into *scripts* in *package.json* to use something
