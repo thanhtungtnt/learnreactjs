@@ -10,6 +10,16 @@
 6. npm i --save-dev react react-dom
 ```
 
+**You need to add into *scripts* in *package.json* to use something
+Ex: for using webpack and webpack-dev-server, I added 2 these code lines below:
+```
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpacktnt": "webpack",
+    "webpackstart": "webpack-dev-server"
+  },
+```
+
 ### WEBPACK
 
 **Every options contains in module.exports**
@@ -43,4 +53,18 @@ module: {
         use: ['babel-loader'] - use babel-loader
     }]
 }
+```
+5. Config webpack-dev-server
+```
+devServer: {
+        contentBase: path.join(__dirname,'src'),
+    },
+```
+6. Config html-webpack-plugin
+```
+plugins: [
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname,'src','index.html')        
+        })
+    ]
 ```
