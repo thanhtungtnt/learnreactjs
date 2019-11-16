@@ -1,0 +1,26 @@
+{
+  "name": "learnreactjs",
+  "version": "1.0.0",
+  "description": "Learning ReactJS",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpacktnt":"webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thanhtungtnt/learnreactjs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thanhtungtnt/learnreactjs/issues"
+  },
+  "homepage": "https://github.com/thanhtungtnt/learnreactjs#readme"
+}
