@@ -1,6 +1,27 @@
 # learnreactjs
-Learning ReactJS
+Setup Webpack
 
-Basically, a component in ReactJS is function that returns JSX. with component, we can manipulate the DOM or the Webpage. So, we need to create a function that returns JSX and that is a component.
+Some basic npm commands: 
+1. npm init -y : reset npm
+2. npm i --save-dev webpack webpack-cli : install Webpack
+3. npm i --save-dev babel-core babel-preset-env babel-preset-react babel-loader
+4. npm i --save-dev webpack-dev-server
+5. npm i --save-dev html-webpack-plugin
+4. npm i --save-dev react react-dom
+WEBPACK
+Every options contains in module.exports
 
-embed javascript variable using curly braces {}
+module.exports = {}
+
+There are many options: 
+1. entry : the input file
+2. output : the output file - in output properties, there are 2 properties (path, filename)
+3. mode: process.env.NODE_ENV || 'development' - you need to set the mode option to 'development' or 'production' so that webpack know if it need to compile into a dev version (uncompressed) or production version (compressed)
+4. Teach webpack how to compile babel
+module: {
+    rules: [{
+        test: /\.(js|jsx)$/, - a regular expression to make sure the file input is correct type
+        exclude: /node_modules/, - ignore node_modules folder
+        use: ['babel-loader'] - use babel-loader
+    }]
+}
