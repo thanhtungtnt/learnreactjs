@@ -68,3 +68,36 @@ plugins: [
         })
     ]
 ```
+
+### REACTJS
+1. You need to bind all event function in React
+Ex: 
+```
+this.handleChange = this.handleChange.bind(this);
+this.addTodo = this.addTodo.bind(this);
+```
+2. Event function has 2 parameters: 
+```
+event.target.value
+event.target.name
+```
+3. Add an item to state
+- Step 1: Clone state into a const 
+- Step 2: Add the item to the clone state 
+- Step 3: setState again with the new clone state
+
+Ex: 
+```
+const tempTodos = this.state.todos;
+tempTodos.push(newTodo);
+this.setState({
+    todos: tempTodos,
+    newTodo: ''
+});
+```
+4. Construct of map function
+```
+this.state.todos.map((item, index) => {
+    return <li key={item.id} className="list-group-item">{item.name}</li>
+})
+```

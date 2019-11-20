@@ -88,6 +88,36 @@ Ex: for using webpack and webpack-dev-server, I added 2 these code lines below:<
         })
     ]
 </div></code></pre>
+<h3 id="reactjs">REACTJS</h3>
+<ol>
+<li>You need to bind all event function in React
+Ex:</li>
+</ol>
+<pre><code><div>this.handleChange = this.handleChange.bind(this);
+this.addTodo = this.addTodo.bind(this);
+</div></code></pre>
+<ol start="2">
+<li>Event function has 2 parameters:</li>
+</ol>
+<pre><code><div>event.target.value
+event.target.name
+</div></code></pre>
+<ol start="3">
+<li>Add an item to state</li>
+</ol>
+<ul>
+<li>Step 1: Clone state into a const</li>
+<li>Step 2: Add the item to the clone state</li>
+<li>Step 3: setState again with the new clone state</li>
+</ul>
+<p>Ex:</p>
+<pre><code><div>const tempTodos = this.state.todos;
+tempTodos.push(newTodo);
+this.setState({
+    todos: tempTodos,
+    newTodo: ''
+});
+</div></code></pre>
 
     </body>
     </html>

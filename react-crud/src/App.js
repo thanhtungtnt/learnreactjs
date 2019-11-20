@@ -1,11 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
+      newTodo: '',
       todos:[{
         id: 1, name:"Học ReactJS"
       },{
@@ -14,31 +15,52 @@ class App extends React.Component {
         id: 3, name: "Mua Sữa Cho Nhím"
       }]
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.addTodo = this.addTodo.bind(this);
+  }
+
+  handleChange(event){
+    this.setState({
+      newTodo: event.target.value
+    });
+  }
+
+  addTodo(event){
+    const newTodo = {
+      name: this.state.newTodo,
+      id: this.state.todos[this.state.todos.length - 1].id + 1
+    };
+
+    //state is IMMUTABLE
+    const tempTodos = this.state.todos;
+    tempTodos.push(newTodo);
+    this.setState({
+      todos: tempTodos,
+      newTodo: ''
+    });
   }
 
   render(){
+    console.log(this.state.newTodo);
     return <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
-      <h2 className="text-center">Todo App</h2>
-      <ul className="list-group text-center">
-        {this.state.todos.map((item) => {
-        return <li className="list-group-item" id="item.id">{item.name}</li>
-        })}
-      </ul>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm">
+            <h2 className="text-center mt-5">Todo App</h2>
+            <div className="form-group">
+              <input type="text" className="form-control" placeholder="Type todo here" onChange={this.handleChange} value={this.state.newTodo} />
+              <button className="btn btn-primary mt-3 form-control" onClick={this.addTodo}>Add Todo</button>
+            </div>
+            
+            <ul className="list-group text-center">
+              {this.state.todos.map((item, index) => {
+                return <li key={item.id} className="list-group-item">{item.name}</li>
+              })}
+            </ul>
+          </div>{/*end col-sm*/}
+        </div>{/*end row*/ }
+      </div>{/* end container */}
     </div>
   }
 }
