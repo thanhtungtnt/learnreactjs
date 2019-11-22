@@ -101,3 +101,83 @@ this.state.todos.map((item, index) => {
     return <li key={item.id} className="list-group-item">{item.name}</li>
 })
 ```
+5. Delete an item from state
+You need to use onClick with another way so that you can pass the *index* to the function
+```
+<button 
+    className="btn btn-danger ml-4" 
+    onClick={() => {this.deleteTodo(index); }}>X</button>
+```
+Then, in function, you use delete function to delete an item in state
+```
+deleteTodo(index){
+    const tempTodos = this.state.todos;
+    delete tempTodos[index];
+
+    this.setState({
+        todos: tempTodos
+    });
+}
+```
+6. Update an item
+Step 1: Create a prop store the *editing* status
+Step 2: Use "editing" prop as a condition to change button name, function,... 
+```
+this.state = {
+    newTodo: '',
+    editing: false,
+    editingIndex: null,
+    todos:[{
+    id: 1, name:"Học ReactJS"
+    },{
+    id: 2, name:"Kiếm Tiền"
+    },{
+    id: 3, name: "Mua Sữa Cho Nhím"
+    }]
+};
+```
+Change button name, function using this way: 
+```
+<button className="btn btn-primary mt-3 form-control" 
+onClick={(this.state.editing === true) ? this.updateTodo : this.addTodo}>
+{(this.state.editing === true) ? "Update Todo" : "Add Todo"}
+</button>
+```
+**editTodo:
+```
+editTodo(index){
+    const todo = this.state.todos[index];
+    this.setState({
+        editing: true,
+        newTodo: todo.name,
+        editingIndex: index
+    });
+}//end editTodo
+```
+**updateTodo:
+```
+updateTodo(){
+    //get editing position
+    let i = this.state.editingIndex;
+
+    //create a temporary available to store the todos[i]
+    const todo = this.state.todos[i];
+
+    //set new value at newTodo to todo.name
+    todo.name = this.state.newTodo;
+
+    //Clone Todos
+    const tempTodos = this.state.todos;
+
+    //Set updated todo to the clone todos
+    tempTodos[i] = todo;
+
+    //finally, set tempTodos to todos, and reset other props
+    this.setState({
+      todos: tempTodos,
+      editing: false,
+      editingIndex: true,
+      newTodo: ''
+    });
+}//end updateTodo
+```
