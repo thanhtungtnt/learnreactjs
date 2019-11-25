@@ -1,6 +1,7 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
+import ListItem from './ListItem';
 
 class App extends React.Component {
   constructor(){
@@ -15,14 +16,21 @@ class App extends React.Component {
         id: 2, name:"Kiếm Tiền"
       },{
         id: 3, name: "Mua Sữa Cho Nhím"
-      }]
+      }],
+      noti: null
     };
 
+    this.alert = this.alert.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.editTodo = this.editTodo.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
+    this.generateTodoId = this.generateTodoId.bind(this);
+  }
+
+  alert(){
+
   }
 
   handleChange(event){
@@ -31,10 +39,18 @@ class App extends React.Component {
     });
   }
 
+  generateTodoId(){
+    const lastTodo = this.state.todos[this.state.todos.length - 1];
+    if(lastTodo){
+      return lastTodo.id + 1;
+    }
+    return 1;
+  }
+
   addTodo(event){
     const newTodo = {
       name: this.state.newTodo,
-      id: this.state.todos[this.state.todos.length - 1].id + 1
+      id: this.generateTodoId()
     };
 
     //state is IMMUTABLE
@@ -95,6 +111,9 @@ class App extends React.Component {
         <div className="row">
           <div className="col-sm">
             <h2 className="text-center mt-5">Todo App</h2>
+            <div className="alert alert-success">
+              <p className="text-center">Todo created sucessfully!</p>
+            </div>
             <div className="form-group">
               <input type="text" className="form-control" placeholder="Type todo here" onChange={this.handleChange} value={this.state.newTodo} />
               <button className="btn btn-primary mt-3 form-control" 
@@ -105,15 +124,12 @@ class App extends React.Component {
             { !this.state.editing &&
             <ul className="list-group text-center">
               {this.state.todos.map((item, index) => {
-                return <li key={item.id} className="list-group-item">
-                  <button 
-                  className="btn btn-info mr-4" 
-                  onClick={() => {this.editTodo(index); }}>U</button>
-                  {item.name}
-                  <button 
-                  className="btn btn-danger ml-4" 
-                  onClick={() => {this.deleteTodo(index); }}>X</button>
-                </li>
+                return <ListItem 
+                  key={item.id}
+                  item={item}
+                  editItem={() => {this.editTodo(index)}}
+                  deleteItem={() => {this.deleteTodo(index)}}
+                />
               })}
             </ul>
             }

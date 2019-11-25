@@ -181,3 +181,47 @@ updateTodo(){
     });
 }//end updateTodo
 ```
+7. Fix a bug from adding todo.
+When I remove all items in list, this error will appear. This error appear because there is no item in list and can not get item (*can not get this: this.state.todos[this.state.todos.length - 1]*). So, we need another way to generateID. See below: 
+```
+generateTodoId(){
+    const lastTodo = this.state.todos[this.state.todos.length - 1];
+    if(lastTodo){
+      return lastTodo.id + 1;
+    }
+    return 1;
+}
+```
+8. Seperate the code into a new component: ListItem
+```
+import React from 'react';
+
+const ListItem = (props) => {
+    return <li key={props.item.id} className="list-group-item">
+    <button 
+    className="btn btn-info mr-4" 
+    onClick={props.editItem}>U</button>
+    {props.item.name}
+    <button 
+    className="btn btn-danger ml-4" 
+    onClick={props.deleteItem}>X</button>
+  </li>
+}
+
+export default ListItem;
+```
+Edit in App.js
+```
+...
+<ul className="list-group text-center">
+    {this.state.todos.map((item, index) => {
+    return <ListItem 
+        key={item.id}
+        item={item}
+        editItem={() => {this.editTodo(index)}}
+        deleteItem={() => {this.deleteTodo(index)}}
+    />
+    })}
+</ul>
+...
+```
