@@ -70,18 +70,18 @@ plugins: [
 ```
 
 ### REACTJS
-1. You need to bind all event function in React
+**1. You need to bind all event function in React**
 Ex: 
 ```
 this.handleChange = this.handleChange.bind(this);
 this.addTodo = this.addTodo.bind(this);
 ```
-2. Event function has 2 parameters: 
+**2. Event function has 2 parameters**
 ```
 event.target.value
 event.target.name
 ```
-3. Add an item to state
+**3. Add an item to state**
 - Step 1: Clone state into a const 
 - Step 2: Add the item to the clone state 
 - Step 3: setState again with the new clone state
@@ -95,13 +95,13 @@ this.setState({
     newTodo: ''
 });
 ```
-4. Construct of map function
+**4. Construct of map function**
 ```
 this.state.todos.map((item, index) => {
     return <li key={item.id} className="list-group-item">{item.name}</li>
 })
 ```
-5. Delete an item from state
+**5. Delete an item from state**
 You need to use onClick with another way so that you can pass the *index* to the function
 ```
 <button 
@@ -119,7 +119,7 @@ deleteTodo(index){
     });
 }
 ```
-6. Update an item
+**6. Update an item**
 Step 1: Create a prop store the *editing* status
 Step 2: Use "editing" prop as a condition to change button name, function,... 
 ```
@@ -181,7 +181,7 @@ updateTodo(){
     });
 }//end updateTodo
 ```
-7. Fix a bug from adding todo.
+**7. Fix a bug from adding todo.**
 When I remove all items in list, this error will appear. This error appear because there is no item in list and can not get item (*can not get this: this.state.todos[this.state.todos.length - 1]*). So, we need another way to generateID. See below: 
 ```
 generateTodoId(){
@@ -192,7 +192,7 @@ generateTodoId(){
     return 1;
 }
 ```
-8. Seperate the code into a new component: ListItem
+**8. Seperate the code into a new component: ListItem**
 ```
 import React from 'react';
 
@@ -225,7 +225,7 @@ Edit in App.js
 </ul>
 ...
 ```
-9. Adding alert notification
+**9. Adding alert notification**
 ```
 ...
 this.state = {
@@ -262,14 +262,14 @@ alert(noti){
 }
 ...
 ```
-10. Disble button if newTodo.length < 5>
+**10. Disble button if newTodo.length < 5**
 ```
     <button className="btn btn-primary mt-3 form-control" disabled={this.state.newTodo.length < 5}
                 onClick={(this.state.editing === true) ? this.updateTodo : this.addTodo}>
                 {(this.state.editing === true) ? "Update Todo" : "Add Todo"}
               </button>
 ```
-11. MockApi.io 
+**11. MockApi.io**
 MockAPI is a simple tool that lets you easily mock up APIs, generate custom data, and preform operations on it using RESTful interface. MockAPI is meant to be used as a prototyping/testing/learning tool.
 
 
