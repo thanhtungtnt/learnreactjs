@@ -225,3 +225,52 @@ Edit in App.js
 </ul>
 ...
 ```
+9. Adding alert notification
+```
+...
+this.state = {
+    newTodo: '',
+    editing: false,
+    editingIndex: null,
+    **noti: null,
+    todos:[{
+    id: 1, name:"Học ReactJS"
+    },{
+    id: 2, name:"Kiếm Tiền"
+    },{
+    id: 3, name: "Mua Sữa Cho Nhím"
+    }]
+};
+
+alert(noti){
+    this.setState({
+        noti
+    });
+
+    setTimeout(() => {
+        this.setState({
+        noti: null
+        });
+    }, 2000);
+}
+
+{
+    this.state.noti &&
+<div className="alert alert-success">
+<p className="text-center">{this.state.noti}</p>
+</div>
+}
+...
+```
+10. Disble button if newTodo.length < 5>
+```
+    <button className="btn btn-primary mt-3 form-control" disabled={this.state.newTodo.length < 5}
+                onClick={(this.state.editing === true) ? this.updateTodo : this.addTodo}>
+                {(this.state.editing === true) ? "Update Todo" : "Add Todo"}
+              </button>
+```
+11. MockApi.io 
+MockAPI is a simple tool that lets you easily mock up APIs, generate custom data, and preform operations on it using RESTful interface. MockAPI is meant to be used as a prototyping/testing/learning tool.
+
+
+

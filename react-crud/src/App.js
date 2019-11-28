@@ -10,14 +10,14 @@ class App extends React.Component {
       newTodo: '',
       editing: false,
       editingIndex: null,
+      noti: null,
       todos:[{
         id: 1, name:"Học ReactJS"
       },{
         id: 2, name:"Kiếm Tiền"
       },{
         id: 3, name: "Mua Sữa Cho Nhím"
-      }],
-      noti: null
+      }]
     };
 
     this.alert = this.alert.bind(this);
@@ -29,8 +29,16 @@ class App extends React.Component {
     this.generateTodoId = this.generateTodoId.bind(this);
   }
 
-  alert(){
+  alert(noti){
+    this.setState({
+      noti
+    });
 
+    setTimeout(() => {
+      this.setState({
+        noti: null
+      });
+    }, 2000);
   }
 
   handleChange(event){
@@ -60,6 +68,8 @@ class App extends React.Component {
       todos: tempTodos,
       newTodo: ''
     });
+
+    this.alert("Added Todo successfully!");
   }//end addTodo
 
   updateTodo(){
@@ -85,6 +95,8 @@ class App extends React.Component {
       editingIndex: true,
       newTodo: ''
     });
+
+    this.alert("Todo updated successfully!");
   }//end updateTodo
 
   editTodo(index){
@@ -103,6 +115,8 @@ class App extends React.Component {
     this.setState({
       todos: tempTodos
     });
+
+    this.alert("Deleted Todo Successfully");
   }//end deleteTodo
 
   render(){
@@ -111,12 +125,15 @@ class App extends React.Component {
         <div className="row">
           <div className="col-sm">
             <h2 className="text-center mt-5">Todo App</h2>
+            {
+              this.state.noti &&
             <div className="alert alert-success">
-              <p className="text-center">Todo created sucessfully!</p>
+            <p className="text-center">{this.state.noti}</p>
             </div>
+            }
             <div className="form-group">
               <input type="text" className="form-control" placeholder="Type todo here" onChange={this.handleChange} value={this.state.newTodo} />
-              <button className="btn btn-primary mt-3 form-control" 
+              <button className="btn btn-primary mt-3 form-control" disabled={this.state.newTodo.length < 5}
                 onClick={(this.state.editing === true) ? this.updateTodo : this.addTodo}>
                 {(this.state.editing === true) ? "Update Todo" : "Add Todo"}
               </button>
