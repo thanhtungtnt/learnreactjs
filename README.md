@@ -272,5 +272,10 @@ alert(noti){
 **11. MockApi.io**
 MockAPI is a simple tool that lets you easily mock up APIs, generate custom data, and preform operations on it using RESTful interface. MockAPI is meant to be used as a prototyping/testing/learning tool.
 
+**12. Install axios**
+```
+npm install axios --save
+```
+
 
 

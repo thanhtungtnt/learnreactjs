@@ -11,14 +11,10 @@ class App extends React.Component {
       editing: false,
       editingIndex: null,
       noti: null,
-      todos:[{
-        id: 1, name:"Học ReactJS"
-      },{
-        id: 2, name:"Kiếm Tiền"
-      },{
-        id: 3, name: "Mua Sữa Cho Nhím"
-      }]
+      todos:[]
     };
+
+    this.apiUrl = 'https://5ddfe406bb46ce001434bdef.mockapi.io/todos';
 
     this.alert = this.alert.bind(this);
     this.handleChange = this.handleChange.bind(this);
